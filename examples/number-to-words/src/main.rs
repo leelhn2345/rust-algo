@@ -1,3 +1,5 @@
+use std::io;
+
 fn convert_number_to_words(number: usize) -> String {
     let ones = [
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
@@ -76,9 +78,33 @@ fn convert_number_to_words(number: usize) -> String {
     }
 }
 fn main() {
-    // println!("Hello, world!");
-    let number: usize = 100_010_000;
-    assert!(number < 999_999_999, "number should be below 1 billion");
-    let words = convert_number_to_words(number);
-    println!("{words} only");
+    println!("please enter a number");
+
+    loop {
+        let mut input = String::new();
+
+        io::stdin()
+            .read_line(&mut input)
+            .expect("failed to read line");
+
+        let number = match input.trim().parse::<usize>() {
+            Ok(number) => match number {
+                0..=1_000_000_000 => number,
+                _ => {
+                    println!("number should be less than 1_000_000_000");
+                    continue;
+                }
+            },
+
+            Err(_) => {
+                println!("number is not valid\nplease retry again.");
+                continue;
+            }
+        };
+
+        let words = convert_number_to_words(number);
+        println!("{words} only");
+        println!("-----------------\nplease enter a new number");
+        continue;
+    }
 }
