@@ -3,5 +3,9 @@
 version = 3
 
 [[package]]
+name = "lines-in-a-box"
+version = "0.1.0"
+
+[[package]]
 name = "number-to-words"
 version = "0.1.0"
