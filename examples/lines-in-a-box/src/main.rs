@@ -37,9 +37,7 @@ fn load_params() -> Result<(u32, u32), Box<dyn Error>> {
     let cols = col_string.trim().parse::<u32>()?;
 
     if !(0..=1_000).contains(&cols) {
-        return Err("columns must be between range of 0 to 1000 inclusive"
-            .to_string()
-            .into());
+        return Err("columns must be between range of 0 to 1000 inclusive".into());
     }
 
     let mut row_string = String::new();
@@ -51,9 +49,7 @@ fn load_params() -> Result<(u32, u32), Box<dyn Error>> {
     let rows: u32 = row_string.trim().parse()?;
 
     if !(0..=1_000).contains(&rows) {
-        return Err("rows must be between range of 0 to 1000 inclusive"
-            .to_string()
-            .into());
+        return Err("rows must be between range of 0 to 1000 inclusive".into());
     }
 
     Ok((cols, rows))
